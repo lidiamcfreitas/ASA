@@ -7,9 +7,8 @@ class Vertex {
 private:
 	/*
 		color
-		= 0 -> nao visitado
-		= 1 -> visitado, nao terminado
-		= 2 -> terminado
+		= 0 -> white
+		= 1 -> grey
 	*/
 	int color;
 	int distance;
@@ -18,16 +17,16 @@ public:
 
 	Vertex(){
 		color = 0;
-		distance = -1;
+		distance = -1; // this is infinity
 		adj = std::list<Vertex*>();
 	}
+    
 	~Vertex(){}
 
 	void setDistance(int _distance){ distance = _distance; }
 	int getDistance(){ return distance; }
 	
 	void setGray() { color = 1; }
-	void setBlack() { color = 2; }
 	bool isWhite() { return color == 0; }
 
 	void addAdjacent(Vertex* v){
@@ -57,19 +56,17 @@ public:
 		adj = new std::list<int>[n];
 		dist_count = new int[size];
 
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < size; ++i)
 			dist_count[i] = 0;
 
-		for (int i = 0; i < n; i++){
+		for (int i = 0; i < n; ++i){
 			verts.insert(verts.end(),Vertex());
 			adj[i] = std::list<int>();
 		}
 	}
-	~Graph(){
-		//delete adj;
-		//delete dist_count;
-	}
-	/* Adicionar edge de W -> V */
+	~Graph(){}
+    
+	/* Adicionar edge de W -> V  e W <- V */
 	void addEdge(int w, int v){
 		//std::cout << "Edge between " << w << " and " << v << "\n";
 		verts[w].addAdjacent(&verts[v]);
@@ -80,7 +77,7 @@ public:
 		std::cout << "Number of vertex: " << size << "\n";
 		std::cout << "Edges: \n";
 		std::list<int>::const_iterator it;
-		for (int i = 0; i < size; i++){
+		for (int i = 0; i < size; ++i){
 			for (it = adj[i].begin(); it != adj[i].end(); ++it){
 				std::cout << "Edge between " << i << " and " << (*it) << " \n";
 			}
@@ -89,7 +86,7 @@ public:
 
 	void printCountedOutput(){
 		std::cout << max_dist << "\n";
-		for (int i = 1; i <= max_dist; i++){
+		for (int i = 1; i <= max_dist; ++i){
 			std::cout << dist_count[i] << "\n";
 		}
 	}
@@ -116,13 +113,12 @@ public:
 					adjacent_vertex->setDistance(current_vertex->getDistance() + 1);
 					queue.push_back(adjacent_vertex);
 
-					dist_count[adjacent_vertex->getDistance()]++;
+					++dist_count[adjacent_vertex->getDistance()];
 					max_dist = adjacent_vertex->getDistance();
 
 				}
 				adjacent_vertex = current_vertex->getNextAdjacent();
 			}
-			current_vertex->setBlack();
 		}
 
 	}
@@ -135,7 +131,7 @@ int main(){
 	std::cin >> num_vert >> num_edge;
 	Graph g = Graph(num_vert);
 	std::cin >> erdos;
-	for (int i = 0; i < num_edge; i++){
+	for (int i = 0; i < num_edge; ++i){
 		std::cin >> vert1 >> vert2;
 		g.addEdge(vert1-1, vert2-1);
 	}
