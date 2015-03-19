@@ -21,7 +21,9 @@ public:
 		adj = std::list<Vertex*>();
 	}
     
-	~Vertex(){}
+	~Vertex(){
+        //delete adj;
+    }
 
 	void setDistance(int _distance){ distance = _distance; }
 	int getDistance(){ return distance; }
@@ -64,7 +66,11 @@ public:
 			adj[i] = std::list<int>();
 		}
 	}
-	~Graph(){}
+	~Graph(){
+        //delete[] verts;
+        delete[] adj;
+        delete[] dist_count;
+    }
     
 	/* Adicionar edge de W -> V  e W <- V */
 	void addEdge(int w, int v){
