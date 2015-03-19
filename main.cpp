@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <stdint.h>
 #include <vector>
 #include <list>
@@ -106,7 +106,7 @@ public:
 		erdos_vertex->setDistance(0);
 		queue.push_back(erdos_vertex);
 
-		while (queue.size() > 0){
+		while (!queue.empty()){
 
 			Vertex* current_vertex = queue.front();
 			queue.pop_front();
