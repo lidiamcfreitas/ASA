@@ -14,4 +14,4 @@ def readvalues(filename):
         else:
             i += 1
 
-readvalues("time.txt")
+readvalues(sys.argv[1])
