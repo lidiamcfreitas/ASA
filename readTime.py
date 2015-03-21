@@ -4,7 +4,7 @@ def readvalues(filename):
     """reads input configuration from filename"""
     file = open(filename,"r")
     res = []
-    i = 1
+    i = 3
     for line in file:
         
         if i%4 == 0:
@@ -13,4 +13,5 @@ def readvalues(filename):
             sys.stdout.write(x[1][:-1] + ",")
         else:
             i += 1
-    
+
+readvalues("time.txt")

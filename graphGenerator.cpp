@@ -9,8 +9,6 @@ void generateConnectGraph(int n, int e){
     for (i = 0; i < n - 1; i++){
         u = std::rand() % n;
         printf("%d %d\n", i, u);
-        //g->addEdge(i, u);
-        //g->addEdge(u, i);
     }
     for (i = 0; i < e; i++){
         v = std::rand() % n;
