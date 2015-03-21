@@ -64,13 +64,11 @@ public:
         dist_count = new int[size];
         
         /* INIT */
-		for (int i = 0; i < size; ++i)
+        for (int i = 0; i < size; ++i){
             dist_count[i] = 0;
-
-		for (int i = 0; i < n; ++i){
-			verts.insert(verts.end(),Vertex());
-			adj[i] = std::list<int>();
-		}
+            verts.insert(verts.end(),Vertex());
+            adj[i] = std::list<int>();
+        }
 	}
     
 	~Graph(){
