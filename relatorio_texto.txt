@@ -1,0 +1,14 @@
+Introdução:
+
+Perante as vastas contribuições de Paul Erdos para a comunidade cientifica, é possivel cálcular o número de Erdos de um cientista com base na 'distancia' em colaborações deste a Paul Erdos. O nosso objetivo com a realização deste projeto é calcular esse número em várias situações.
+
+I/O
+
+Para simular esta situação é fornecido um input onde a primeira linha contem V(nº de autores) e E(nº de colaborações). Na 2ª linha está o número correspondente a Paul Erdos. As E linhas seguintes contêm pares U W que representam uma colaboração entre o autor U e W (número que representa cada um deles).
+No output a 1ª linha contém o maior número de Erdos, M, e em cada linha seguinte, i, até M linhas( 1 < i < M), a quantidade de autores com número de Erdos i.
+
+------------------------------------------------
+
+Descrição da solução
+
+
