@@ -1,14 +1,39 @@
-Introdução:
+Introdução
+__________________________________________________________________
 
 Perante as vastas contribuições de Paul Erdos para a comunidade cientifica, é possivel cálcular o número de Erdos de um cientista com base na 'distancia' em colaborações deste a Paul Erdos. O nosso objetivo com a realização deste projeto é calcular esse número em várias situações.
 
-I/O
+-I/O:
 
 Para simular esta situação é fornecido um input onde a primeira linha contem V(nº de autores) e E(nº de colaborações). Na 2ª linha está o número correspondente a Paul Erdos. As E linhas seguintes contêm pares U W que representam uma colaboração entre o autor U e W (número que representa cada um deles).
 No output a 1ª linha contém o maior número de Erdos, M, e em cada linha seguinte, i, até M linhas( 1 < i < M), a quantidade de autores com número de Erdos i.
 
-------------------------------------------------
-
+-------------------------------------------------
 Descrição da solução
+_________________________________________________
+
+-Linguagem de Programação:
+-Estruturas de Dados:
+(...)
+O grafo foi então construido como um vetor de Vertices, cada um contendo uma lista de adjacência.
+
+-Solução:
+Primeiramente foi definida a representação do dominio do problema para chegar a uma solução: cada autor foi representado por um vertice, cada colaboração por uma ligação entre vértices, sendo assim o problema transposto para um grafo não dirigido, onde o número de Erdos para cada autor seria apenas a distância do vértice que o representa ao vértice que representa Erdos. Assim o problema reduz-se ao cálculo de distâncias dentro de um grafo permitindo usar um dos vários algoritmos existentes.
 
 
+-Algoritmo:
+
+Após ser criado o grafo que representa o input (lido do stdin) é necessário calcular a distância de cada vértice ao vértice de Erdos.
+Para tal é executado o algoritmo de BFS a partir do vértice de Erdos no grafo, calculando assim as distâncias de cada vértice da forma que se segue:
+1. Todos os vértices são inicializados a branco (indicando que nunca foram tratados pelo algoritmo) e com distância 'infinita'
+1. Começando do vértice de Erdos, é lhe atribuido a distância de 0 e é colocado na fila de espera dos vértices a serem visitados. 
+2. Para cada vértice a ser visitado, são percorridos os seus vértices adjacentes incrementando a distância em 1 em relação ao seu pai. Estes são adicionados à fila de espera para serem visitados, e o pai é marcado como visitado (mudança de cor de branco para cinzento).
+3. Quando já não existem vértices a serem visitados, o algoritmo termina.
+
+Em comparação a uma implementação geral do BFS, procedemos à remoção da cor preta e das referências aos vértices predecessores por falta de utilidade na implementação necessária para o projeto.
+Os vértices podem assim estar brancos (não tratados pelo algoritmo) ou cinzentos (já adicionados à lista de vértices a visitar), sendo que a sua remoção da lista de visitados é equivalente à mudança para cor preta.
+
+O pedido dos vértices adjacentes procede à sua remoção da lista de vértices adjacentes para facilidade de uso, visto que o algoritmo apenas percorre cada vértice adjacente a outro vértice uma vez. A 'destruição' da lista de adjacências de um vértice não tem assim qualquer implicação para o algoritmo em si.
+------------------------------------------------------------------
+Análise teórica
+__________________________________________________________________
